@@ -6,7 +6,7 @@ import supervision as sv
 cap = cv2.VideoCapture(0)
 
 # 定义模型
-model = YOLO('yolov8n.pt')
+model = YOLO('yolov8l.pt')
 
 box_annotator = sv.BoxAnnotator(
     thickness=2,
