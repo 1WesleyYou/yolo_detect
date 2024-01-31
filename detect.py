@@ -21,8 +21,13 @@ while 1:
     ret, frame = cap.read()
     results = model(frame)[0]
     detections = sv.Detections.from_ultralytics(results)
+    # print(detections)
 
-    frame = box_annotator.annotate(scene=frame, detections=detections)
+    labels = [
+        f"{model.model.names[detections.class_id[0]]} {detections.confidence[0]:0.2f}"
+    ]
+
+    frame = box_annotator.annotate(scene=frame, detections=detections, labels=labels)
 
     cv2.imshow("name", frame)  # cv2.flip(results, 1))
     if cv2.waitKey(1) == ord('q'):
